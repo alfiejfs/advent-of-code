@@ -3,62 +3,30 @@ package main
 import (
 	"fmt"
 	"github.com/alfiejsmith/advent-of-code/internal/pkg/filereader"
-	"math"
+	"strconv"
+	"strings"
 )
 
-type seat struct {
-	row    int
-	column int
-	id     int
-}
+func getSeatId(line string) int {
 
-func getSeatInfo(line string) *seat {
-	lowRow, highRow, lowColumn, highColumn := 0, 127, 0, 7
+	line = strings.ReplaceAll(line, "B", "1")
+	line = strings.ReplaceAll(line, "F", "0")
+	line = strings.ReplaceAll(line, "R", "1")
+	line = strings.ReplaceAll(line, "L", "0")
 
-	for charIndex := 0; charIndex < 6; charIndex++ {
-		switch line[charIndex] {
-		case 'F':
-			highRow -= int(math.Ceil(float64(highRow-lowRow) / 2))
-		case 'B':
-			lowRow += int(math.Ceil(float64(highRow-lowRow) / 2))
-		}
+	id, err := strconv.ParseInt(line, 2, 64)
+	if err != nil {
+		panic(err)
 	}
 
-	for charIndex := 7; charIndex < len(line)-1; charIndex++ {
-		switch line[charIndex] {
-		case 'L':
-			highColumn -= int(math.Ceil(float64(highColumn-lowColumn) / 2))
-		case 'R':
-			lowColumn += int(math.Ceil(float64(highColumn-lowColumn) / 2))
-		}
-	}
-
-	var row int
-	if line[6] == 'F' {
-		row = lowRow
-	} else {
-		row = highRow
-	}
-
-	var column int
-	if line[len(line)-1] == 'L' {
-		column = lowColumn
-	} else {
-		column = highColumn
-	}
-
-	return &seat{
-		row: row,
-		column: column,
-		id:row*8 + column,
-	}
+	return int(id)
 }
 
 func getHighestId(input *[]string) int {
 	highestId := -1
 
 	for _, line := range *input {
-		id := getSeatInfo(line).id
+		id := getSeatId(line)
 		if id > highestId {
 			highestId = id
 		}
@@ -73,8 +41,7 @@ func getMyId(input *[]string) int {
 	lowestId, highestId := 9999, 0
 
 	for _, line := range *input {
-		data := getSeatInfo(line)
-		id := data.id
+		id := getSeatId(line)
 		ids[id] = true
 
 		if lowestId > id {
@@ -94,8 +61,6 @@ func getMyId(input *[]string) int {
 			}
 		}
 	}
-
-
 
 	return 0
 }
