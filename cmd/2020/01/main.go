@@ -1,36 +1,14 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
+	"github.com/alfiejsmith/advent-of-code/internal/pkg/filereader"
 )
 
-func checkError(err error) {
-	if err != nil {
-		panic(err)
-	}
-}
 
 func main() {
 
-	path, err := os.Getwd()
-	checkError(err)
-
-	file, err := os.Open(path + "\\..\\inputs\\01.txt")
-	checkError(err)
-	defer file.Close()
-
-	var nums []int64
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := scanner.Text()
-		i, err := strconv.ParseInt(line, 10, 64)
-		checkError(err)
-		nums = append(nums, i)
-	}
+	nums := filereader.ReadIntFile("input")
 
 	var target int64 = 2020
 
