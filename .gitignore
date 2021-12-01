@@ -22,4 +22,5 @@
 **/gradle/
 **/gradle/**
 gradlew.bat
-gradle
+gradlew
+.DS_STORE
