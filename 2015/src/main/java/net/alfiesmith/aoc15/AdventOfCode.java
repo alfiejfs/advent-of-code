@@ -15,6 +15,7 @@ public class AdventOfCode {
   public static void main(String[] args) {
     System.out.println("Enter day:");
     Scanner scanner = new Scanner(System.in);
+    new DayEight();
     int day = scanner.nextInt();
 
     switch (day) {
