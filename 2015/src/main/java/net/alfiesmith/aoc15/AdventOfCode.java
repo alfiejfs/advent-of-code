@@ -1,6 +1,7 @@
 package net.alfiesmith.aoc15;
 
 import java.util.Scanner;
+import net.alfiesmith.aoc15.day.eight.DayEight;
 import net.alfiesmith.aoc15.day.five.DayFive;
 import net.alfiesmith.aoc15.day.four.DayFour;
 import net.alfiesmith.aoc15.day.one.DayOne;
@@ -24,6 +25,7 @@ public class AdventOfCode {
       case 5 -> new DayFive();
       case 6 -> new DaySix();
       case 7 -> new DaySeven();
+      case 8 -> new DayEight();
     }
   }
 
