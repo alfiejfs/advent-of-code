@@ -10,7 +10,6 @@ public final class DayOne extends Day {
 
   @Override
   public Object partOne(String input) {
-    System.out.println(input);
     int count = 0;
     for (char character : input.toCharArray()) {
       if (character == '(') {

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.TimeUnit;
 
 public abstract class Day {
 
@@ -13,13 +14,20 @@ public abstract class Day {
 
     long time = System.nanoTime();
     System.out.println("Part one: " + partOne(input));
-    System.out.println("Completed in: " + (System.nanoTime() - time) + "ns");
+    time = System.nanoTime() - time;
+    System.out.println("Completed in: ");
+    System.out.println(" - " + time + "ns");
+    System.out.println(" - " + (time / Math.pow(10, 6)) + "ms");
+    System.out.println(" - " + (time / Math.pow(10, 9)) + "s");
+    System.out.println();
 
     time = System.nanoTime();
-    System.out.println("Part one: " + partTwo(input));
-    System.out.println("Completed in: " + (System.nanoTime() - time) + "ns");
-
-
+    System.out.println("Part two: " + partTwo(input));
+    time = System.nanoTime() - time;
+    System.out.println("Completed in: ");
+    System.out.println(" - " + time + "ns");
+    System.out.println(" - " + (time / Math.pow(10, 6)) + "ms");
+    System.out.println(" - " + (time / Math.pow(10, 9)) + "s");
   }
 
   public abstract Object partOne(String input);
