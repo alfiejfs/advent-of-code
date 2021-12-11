@@ -8,6 +8,7 @@ import net.alfiesmith.aoc21.day.one.DayOne;
 import java.util.Scanner;
 import net.alfiesmith.aoc21.day.seven.DaySeven;
 import net.alfiesmith.aoc21.day.six.DaySix;
+import net.alfiesmith.aoc21.day.ten.DayTen;
 import net.alfiesmith.aoc21.day.three.DayThree;
 import net.alfiesmith.aoc21.day.two.DayTwo;
 
@@ -29,6 +30,7 @@ public class AdventOfCode {
       case 7 -> new DaySeven();
       case 8 -> new DayEight();
       case 9 -> new DayNine();
+      case 10 -> new DayTen();
     }
   }
 
