@@ -45,21 +45,15 @@ fn part2(input: &str) {
 
     let mut sum = 0;
     for line in input.lines() {
-        let mut first = None;
-        let mut last = None;
-
-        for i in 0..line.len() {
-            let x = mapping
-                .into_iter()
-                .find_map(|(prefix, n)| line[i..].starts_with(prefix).then_some(n));
-
-            first = first.or(x);
-            last = x.or(last);
-        }
-
-        if first.is_some() {
-            sum += first.unwrap() * 10 + last.unwrap();
-        }
+        sum += mapping
+            .iter()
+            .filter_map(|(expr, val)| line.find(expr).map(|pos| (pos, val)))
+            .min_by_key(|&(pos, _)| pos).unwrap().1 * 10;
+        
+        sum += mapping
+            .iter()
+            .filter_map(|(expr, val)| line.rfind(expr).map(|pos| (pos, val)))
+            .max_by_key(|&(pos, _)| pos).unwrap().1;
     }
 
     println!("Part two: {}", sum);
