@@ -43,9 +43,8 @@ fn part2(input: &str) {
         ("eight", 8),
         ("8", 8),
         ("nine", 9),
-        ("9", 9)
+        ("9", 9),
     ];
-
 
     let mut sum = 0;
     for line in input.lines() {
@@ -53,7 +52,9 @@ fn part2(input: &str) {
         let mut last = None;
 
         for i in 0..line.len() {
-            let x = mapping.into_iter().find_map(|(prefix, n)| line[i..].starts_with(prefix).then_some(n));
+            let x = mapping
+                .into_iter()
+                .find_map(|(prefix, n)| line[i..].starts_with(prefix).then_some(n));
 
             if first.is_none() {
                 first = x;
@@ -68,6 +69,6 @@ fn part2(input: &str) {
             sum += first.unwrap() * 10 + last.unwrap();
         }
     }
-    
+
     println!("Part two: {}", sum);
 }
