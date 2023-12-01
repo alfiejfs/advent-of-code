@@ -9,12 +9,9 @@ fn part1(input: &str) {
         let mut first = None;
         let mut last = None;
         for character in line.chars() {
-            if let Some(number) = character.to_digit(10) {
-                if first.is_none() {
-                    first = Some(number);
-                }
-                last = Some(number);
-            }
+            let x = character.to_digit(10);
+            first = first.or(x);
+            last = x.or(last);
         }
 
         if first.is_some() {
@@ -25,7 +22,7 @@ fn part1(input: &str) {
 }
 
 fn part2(input: &str) {
-    let mapping: [(&str, u32); 18] = [
+    let mapping = [
         ("one", 1),
         ("1", 1),
         ("two", 2),
@@ -56,13 +53,8 @@ fn part2(input: &str) {
                 .into_iter()
                 .find_map(|(prefix, n)| line[i..].starts_with(prefix).then_some(n));
 
-            if first.is_none() {
-                first = x;
-            }
-
-            if x.is_some() {
-                last = x;
-            }
+            first = first.or(x);
+            last = x.or(last);
         }
 
         if first.is_some() {
