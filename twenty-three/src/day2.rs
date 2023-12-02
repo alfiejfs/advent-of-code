@@ -11,7 +11,7 @@ fn parse(input: &str) -> Vec<(u32, u32, u32, u32)> {
             let (_, game) = game.split_once(" ").expect("space");
             let game: u32 = game.parse().expect("game id");
 
-            let moves = moves
+            let (r, g, b) = moves
                 .trim()
                 .split(";")
                 .map(|selection| {
@@ -29,27 +29,11 @@ fn parse(input: &str) -> Vec<(u32, u32, u32, u32)> {
                         }
                     }
                     (r, g, b)
-                })
-                .collect::<Vec<_>>();
+                }).reduce(
+                |(max_r, max_g, max_b), (r, g, b)|
+                (max_r.max(r), max_g.max(g), max_b.max(b))
+            ).expect("valid");
 
-            let r = moves
-                .iter()
-                .copied()
-                .map(|(r, _, _)| r)
-                .max()
-                .expect("red value");
-            let g = moves
-                .iter()
-                .copied()
-                .map(|(_, g, _)| g)
-                .max()
-                .expect("green value");
-            let b = moves
-                .iter()
-                .copied()
-                .map(|(_, _, b)| b)
-                .max()
-                .expect("blue value");
             (game, r, g, b)
         })
         .collect::<Vec<_>>()
