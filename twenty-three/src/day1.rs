@@ -4,21 +4,22 @@ pub fn solve(input: &str) {
 }
 
 fn part1(input: &str) {
-    let mut sum = 0;
-    for line in input.lines() {
-        let mut first = None;
-        let mut last = None;
-        for character in line.chars() {
-            let x = character.to_digit(10);
-            first = first.or(x);
-            last = x.or(last);
-        }
+    let result: u32 = input
+        .lines()
+        .map(|line| {
+            let mut first = None;
+            let mut last = None;
+            for character in line.chars() {
+                let x = character.to_digit(10);
+                first = first.or(x);
+                last = x.or(last);
+            }
 
-        if first.is_some() {
-            sum += first.unwrap() * 10 + last.unwrap();
-        }
-    }
-    println!("Part one: {}", sum);
+            return first.unwrap() * 10 + last.unwrap();
+        })
+        .sum();
+
+    println!("Part one: {}", result);
 }
 
 fn part2(input: &str) {
@@ -43,23 +44,24 @@ fn part2(input: &str) {
         ("9", 9),
     ];
 
-    let mut sum = 0;
-    for line in input.lines() {
-        sum += mapping
-            .iter()
-            .filter_map(|(expr, val)| line.find(expr).map(|pos| (pos, val)))
-            .min_by_key(|&(pos, _)| pos)
-            .unwrap()
-            .1
-            * 10;
+    let result: u32 = input
+        .lines()
+        .map(|line| {
+            let (_, first) = mapping
+                .iter()
+                .filter_map(|(expr, val)| line.find(expr).map(|pos| (pos, val)))
+                .min_by_key(|&(pos, _)| pos)
+                .unwrap();
 
-        sum += mapping
-            .iter()
-            .filter_map(|(expr, val)| line.rfind(expr).map(|pos| (pos, val)))
-            .max_by_key(|&(pos, _)| pos)
-            .unwrap()
-            .1;
-    }
+            let (_, second) = mapping
+                .iter()
+                .filter_map(|(expr, val)| line.rfind(expr).map(|pos| (pos, val)))
+                .max_by_key(|&(pos, _)| pos)
+                .unwrap();
 
-    println!("Part two: {}", sum);
+            first * 10 + second
+        })
+        .sum();
+
+    println!("Part two: {}", result);
 }
