@@ -2,6 +2,7 @@ use std::fs;
 use std::io::{self, Write};
 
 mod day1;
+mod day2;
 
 fn main() {
     println!("Enter the day number to run: ");
@@ -17,6 +18,7 @@ fn main() {
     if let Ok(day) = input.parse::<u32>() {
         match day {
             1 => solve_day("input/day1.txt", &day1::solve),
+            2 => solve_day("input/day2.txt", &day2::solve),
             _ => println!("Day not implemented"),
         }
     }

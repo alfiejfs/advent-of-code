@@ -48,12 +48,17 @@ fn part2(input: &str) {
         sum += mapping
             .iter()
             .filter_map(|(expr, val)| line.find(expr).map(|pos| (pos, val)))
-            .min_by_key(|&(pos, _)| pos).unwrap().1 * 10;
-        
+            .min_by_key(|&(pos, _)| pos)
+            .unwrap()
+            .1
+            * 10;
+
         sum += mapping
             .iter()
             .filter_map(|(expr, val)| line.rfind(expr).map(|pos| (pos, val)))
-            .max_by_key(|&(pos, _)| pos).unwrap().1;
+            .max_by_key(|&(pos, _)| pos)
+            .unwrap()
+            .1;
     }
 
     println!("Part two: {}", sum);
