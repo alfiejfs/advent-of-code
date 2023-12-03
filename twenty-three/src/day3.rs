@@ -26,13 +26,8 @@ fn part1(input: &str) {
                 }
 
                 let start_index_val = start_index.unwrap();
-                let check_start_index = if start_index_val > 0 {
-                    start_index_val - 1
-                } else {
-                    0
-                };
-
-
+                let check_start_index = start_index_val.checked_add_signed(-1).unwrap_or(0);
+    
                 if has_symbol_at_index(check_start_index, Some(line))
                     || has_symbol_at_index(i, Some(line))
                     || has_symbol_over_range(check_start_index, i, prev_line)
@@ -71,11 +66,7 @@ fn part2(input: &str) {
                 }
 
                 let start_index_val = start_index.unwrap();
-                let check_start_index = if start_index_val > 0 {
-                    start_index_val - 1
-                } else {
-                    0
-                };
+                let check_start_index = start_index_val.checked_add_signed(-1).unwrap_or(0);
 
                 let num = line[start_index_val..i].parse::<u64>().expect("valid int");
 
