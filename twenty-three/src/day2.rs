@@ -29,10 +29,11 @@ fn parse(input: &str) -> Vec<(u32, u32, u32, u32)> {
                         }
                     }
                     (r, g, b)
-                }).reduce(
-                |(max_r, max_g, max_b), (r, g, b)|
-                (max_r.max(r), max_g.max(g), max_b.max(b))
-            ).expect("valid");
+                })
+                .reduce(|(max_r, max_g, max_b), (r, g, b)| {
+                    (max_r.max(r), max_g.max(g), max_b.max(b))
+                })
+                .expect("valid");
 
             (game, r, g, b)
         })

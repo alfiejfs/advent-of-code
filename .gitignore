@@ -24,3 +24,6 @@
 gradlew.bat
 gradlew
 .DS_STORE
+
+target/
+Cargo.lock
