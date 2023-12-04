@@ -4,6 +4,7 @@ use std::io::{self, Write};
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 fn main() {
     println!("Enter the day number to run: ");
@@ -21,6 +22,7 @@ fn main() {
             1 => solve_day("input/day1.txt", &day1::solve),
             2 => solve_day("input/day2.txt", &day2::solve),
             3 => solve_day("input/day3.txt", &day3::solve),
+            4 => solve_day("input/day4.txt", &day4::solve),
             _ => println!("Day not implemented"),
         }
     }
