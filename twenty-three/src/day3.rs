@@ -27,7 +27,7 @@ fn part1(input: &str) {
 
                 let start_index_val = start_index.unwrap();
                 let check_start_index = start_index_val.checked_add_signed(-1).unwrap_or(0);
-    
+
                 if has_symbol_at_index(check_start_index, Some(line))
                     || has_symbol_at_index(i, Some(line))
                     || has_symbol_over_range(check_start_index, i, prev_line)
@@ -35,7 +35,7 @@ fn part1(input: &str) {
                 {
                     sum += line[start_index_val..i].parse::<u64>().expect("valid int");
                 }
-                
+
                 start_index = None;
             }
         }
@@ -46,7 +46,7 @@ fn part1(input: &str) {
 
 fn part2(input: &str) {
     let lines: Vec<_> = input.lines().collect();
-    
+
     let mut gears = HashMap::new();
     for (line_num, line) in lines.iter().enumerate() {
         let prev_line = if line_num > 0 {
@@ -70,7 +70,8 @@ fn part2(input: &str) {
 
                 let num = line[start_index_val..i].parse::<u64>().expect("valid int");
 
-                [prev_line, Some(line), next_line].iter()
+                [prev_line, Some(line), next_line]
+                    .iter()
                     .zip([-1, 0, 1])
                     .map(|(l, o)| (get_gears(check_start_index, i, *l), o))
                     .for_each(|(found_gears, offset)| {
@@ -82,13 +83,14 @@ fn part2(input: &str) {
                             gears.get_mut(&key).expect("vector").push(num);
                         }
                     });
-                
+
                 start_index = None;
             }
         }
     }
 
-    let result: u64 = gears.iter()
+    let result: u64 = gears
+        .iter()
         .filter(|(_, v)| v.len() == 2)
         .map(|(_, v)| v.iter().fold(1, |acc, &x| acc * x))
         .sum();

@@ -1,3 +1,5 @@
+#![feature(btree_cursors)]
+
 use std::fs;
 use std::io::{self, Write};
 
@@ -5,6 +7,7 @@ mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 
 fn main() {
     println!("Enter the day number to run: ");
@@ -23,6 +26,7 @@ fn main() {
             2 => solve_day("input/day2.txt", &day2::solve),
             3 => solve_day("input/day3.txt", &day3::solve),
             4 => solve_day("input/day4.txt", &day4::solve),
+            5 => solve_day("input/day5.txt", &day5::solve),
             _ => println!("Day not implemented"),
         }
     }

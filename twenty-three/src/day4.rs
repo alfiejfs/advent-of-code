@@ -11,10 +11,10 @@ fn parse(input: &str) -> Vec<(HashSet<u32>, HashSet<u32>)> {
         .map(|line| {
             let (_, numbers) = line.split_once(": ").expect("colon space");
             let (left, right) = numbers.split_once(" | ").expect("space pipe space");
-            
+
             let left = left.split(" ").filter_map(|x| x.parse().ok()).collect();
             let right = right.split(" ").filter_map(|x| x.parse().ok()).collect();
-            
+
             (left, right)
         })
         .collect::<Vec<_>>()
@@ -53,5 +53,5 @@ fn part2(input: &str) {
 
     let result: u32 = copy_count.iter().sum();
 
-    println!("Part 2: {result}")
+    println!("Part 2: {result}");
 }
