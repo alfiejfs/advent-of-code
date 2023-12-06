@@ -31,14 +31,16 @@ fn parse_two(input: &str) -> (u64, u64) {
         .expect("line")
         .replace("Time:", "")
         .replace(" ", "")
-        .parse().unwrap();
+        .parse()
+        .unwrap();
 
     let distance = lines
         .get(1)
         .expect("line")
         .replace("Distance:", "")
         .replace(" ", "")
-        .parse().unwrap();
+        .parse()
+        .unwrap();
 
     (time, distance)
 }
