@@ -8,6 +8,7 @@ mod day2;
 mod day3;
 mod day4;
 mod day5;
+mod day6;
 
 fn main() {
     println!("Enter the day number to run: ");
@@ -27,6 +28,7 @@ fn main() {
             3 => solve_day("input/day3.txt", &day3::solve),
             4 => solve_day("input/day4.txt", &day4::solve),
             5 => solve_day("input/day5.txt", &day5::solve),
+            6 => solve_day("input/day6.txt", &day6::solve),
             _ => println!("Day not implemented"),
         }
     }
