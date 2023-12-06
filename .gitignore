@@ -27,3 +27,5 @@ gradlew
 
 target/
 Cargo.lock
+
+.vscode
